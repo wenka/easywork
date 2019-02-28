@@ -24,17 +24,17 @@ public class ScpTest {
 
     @Test
     public void upload() throws JSchException, FileNotFoundException {
-        SSH2 ssh2 = new SSH2().setUsername(USERNAME).setPassword(PASSWORD).setHost(HOST);
-        SftpService sftpService = SSH2Client.connect(ssh2).getSftpService();
-        sftpService.upload(localFile, remoteFile);
-        SSH2Client.close();
+//        SSH2 ssh2 = new SSH2().setUsername(USERNAME).setPassword(PASSWORD).setHost(HOST);
+//        SftpService sftpService = SSH2Client.connect(ssh2).getSftpService();
+//        sftpService.upload(localFile, remoteFile);
+//        SSH2Client.close();
     }
 
     @Test
     public void downLoad() throws JSchException, FileNotFoundException {
-        SSH2 ssh2 = new SSH2().setUsername(USERNAME).setPassword(PASSWORD).setHost(HOST);
-        SftpService sftpService = SSH2Client.connect(ssh2).getSftpService();
-        sftpService.download(remoteFile,localFile);
-        SSH2Client.close();
+//        SSH2 ssh2 = new SSH2().setUsername(USERNAME).setPassword(PASSWORD).setHost(HOST);
+//        SftpService sftpService = SSH2Client.connect(ssh2).getSftpService();
+//        sftpService.download(remoteFile,localFile);
+//        SSH2Client.close();
     }
 }

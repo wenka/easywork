@@ -23,39 +23,20 @@ public class CommandTest {
 
     @Test
     public void test() throws JSchException, IOException {
-        SSH2 ssh2 = new SSH2().setUsername(USERNAME).setPassword(PASSWORD).setHost(HOST);
-        SSH2Client connect = SSH2Client.connect(ssh2);
-        CommandService commandService = connect.getCommandService();
-        commandService.run("ls -a");
-        SSH2Client.close();
+//        SSH2 ssh2 = new SSH2().setUsername(USERNAME).setPassword(PASSWORD).setHost(HOST);
+//        SSH2Client connect = SSH2Client.connect(ssh2);
+//        CommandService commandService = connect.getCommandService();
+//        commandService.run("ls -a");
+//        SSH2Client.close();
     }
 
     @Test
     public void testWidthSudo() throws JSchException, IOException {
-        SSH2 ssh2 = new SSH2().setUsername(USERNAME).setPassword(PASSWORD).setHost(HOST);
-        SSH2Client connect = SSH2Client.connect(ssh2);
-        CommandService commandService = connect.getCommandService();
-        commandService.runSudo("docker ps -a", PASSWORD);
-        SSH2Client.close();
+//        SSH2 ssh2 = new SSH2().setUsername(USERNAME).setPassword(PASSWORD).setHost(HOST);
+//        SSH2Client connect = SSH2Client.connect(ssh2);
+//        CommandService commandService = connect.getCommandService();
+//        commandService.runSudo("docker ps -a", PASSWORD);
+//        SSH2Client.close();
     }
 
-    @Test
-    public void cmd() throws IOException {
-        Runtime runtime = Runtime.getRuntime();
-        Process exec = runtime.exec("git --version");
-        InputStream in = exec.getInputStream();
-        byte[] tmp = new byte[1024];
-        while (in.available() > 0) {
-            int i = in.read(tmp, 0, 1024);
-            if (i < 0) break;
-            System.out.print(new String(tmp, 0, i));
-        }
-        try {
-            Thread.sleep(1000);
-        } catch (Exception ee) {
-        }
-        in.close();
-        exec.destroy();
-
-    }
 }
