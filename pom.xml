@@ -7,7 +7,7 @@
     <groupId>com.easywork</groupId>
     <artifactId>easywork-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <properties>
         <java.version>1.8</java.version>
@@ -19,6 +19,12 @@
         <module>easywork-ssh2</module>
     </modules>
 
+    <distributionManagement>
+        <repository>
+            <id>ew</id>
+            <url>http://www.wenka.top:8081/nexus/content/repositories/ew/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
