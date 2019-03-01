@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>easywork-ssh2</artifactId>
+    <version>1.0.1</version>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.jcraft/jsch -->

@@ -1,6 +1,7 @@
 package com.easywork.ssh2.service;
 
 import com.easywork.ssh2.ChannelType;
+import com.easywork.ssh2.exception.SSH2Exception;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
@@ -73,24 +74,32 @@ public class CommandService {
     }
 
     private void readInputStream(InputStream in) throws IOException {
-        LOG.info("***************************↓result↓**********************************");
+        StringBuffer stringBuffer = new StringBuffer("\n***************************↓result↓**********************************\n");
         byte[] tmp = new byte[1024];
         while (true) {
             while (in.available() > 0) {
                 int i = in.read(tmp, 0, 1024);
                 if (i < 0) break;
-                LOG.info(new String(tmp, 0, i));
+                stringBuffer.append(new String(tmp, 0, i));
             }
             if (channelExec.isClosed()) {
-                LOG.error("exit-status: {}", channelExec.getExitStatus());
+                in.close();
+                stringBuffer.append("\nexit-status: "+channelExec.getExitStatus());
+                stringBuffer.append("\n***************************↑result↑**********************************");
+                LOG.info(stringBuffer.toString());
+                if (channelExec.getExitStatus() != 0){
+                    throw SSH2Exception.createException("exit-status:" + channelExec.getExitStatus());
+                }
                 break;
             }
             try {
                 Thread.sleep(1000);
             } catch (Exception ee) {
+                ee.printStackTrace();
+                in.close();
+                throw SSH2Exception.createException("thread sleep exception.");
             }
         }
-        in.close();
-        LOG.info("***************************↑result↑**********************************");
+
     }
 }

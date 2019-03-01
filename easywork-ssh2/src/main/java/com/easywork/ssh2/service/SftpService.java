@@ -1,5 +1,6 @@
 package com.easywork.ssh2.service;
 
+import com.easywork.ssh2.exception.SSH2Exception;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
@@ -54,9 +55,11 @@ public class SftpService {
             } catch (SftpException e) {
                 LOG.error("===== ssh2 upload error =====");
                 e.printStackTrace();
+                throw SSH2Exception.createException("ssh2 upload error ===> " + e.getMessage());
             }
         } else {
             LOG.error("===== localFilePath:{} is not existed=====", localFilePath);
+            throw SSH2Exception.createException(localFilePath + " is not existed");
         }
         channelSftp.quit();
     }
@@ -71,11 +74,12 @@ public class SftpService {
         LOG.info("localFilePath:{}\nremoteFilePath:{}", localFilePath, remoteFilePath);
         this.init();
         try {
-            channelSftp.get(remoteFilePath,localFilePath);
+            channelSftp.get(remoteFilePath, localFilePath);
             LOG.info("download success!!!");
         } catch (SftpException e) {
             LOG.error("===== ssh2 download error =====");
             e.printStackTrace();
+            throw SSH2Exception.createException("ssh2 download error ===> " + e.getMessage());
         }
         channelSftp.quit();
     }
