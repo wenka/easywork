@@ -28,11 +28,11 @@
                 <job-data-map>
                     <entry>
                         <key>taskId</key>
-                        <value>test</value>
+                        <value>a</value>
                     </entry>
                 </job-data-map>
                 <misfire-instruction>MISFIRE_INSTRUCTION_SMART_POLICY</misfire-instruction>
-                <cron-expression>0 0/1 * * * ?</cron-expression>
+                <cron-expression>0/5 * * * * ?</cron-expression>
                 <time-zone>Asia/ShangHai</time-zone>
             </cron>
         </trigger>
