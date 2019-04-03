@@ -1,0 +1,16 @@
+server:
+  port: 18001
+  servlet:
+    context-path: /batch
+spring:
+  quartz:
+    properties:
+      org:
+        quartz:
+          plugin:
+            jobInitializer:
+              class: org.quartz.plugins.xml.XMLSchedulingDataProcessorPlugin
+              fileNames: tasks/task_data.xml
+              failOnFileNotFound: true
+    job-store-type: memory
+

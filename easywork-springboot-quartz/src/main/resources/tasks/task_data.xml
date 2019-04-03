@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<job-scheduling-data xmlns="http://www.quartz-scheduler.org/xml/JobSchedulingData">
+    <pre-processing-commands>
+        <delete-jobs-in-group>*</delete-jobs-in-group>
+        <delete-triggers-in-group>*</delete-triggers-in-group>
+    </pre-processing-commands>
+
+    <processing-directives>
+        <overwrite-existing-data>false</overwrite-existing-data>
+        <ignore-duplicates>false</ignore-duplicates>
+    </processing-directives>
+
+    <schedule>
+        <job>
+            <name>DEFAULT_JOB</name>
+            <group>DEFAULT</group>
+            <description>默认JOB处理</description>
+            <job-class>com.easywork.easywork.springboot.quartz.job.GeneralJobHandler</job-class>
+            <durability>false</durability>
+            <recover>true</recover>
+        </job>
+
+        <trigger>
+            <cron>
+                <name>Test</name>
+                <job-name>DEFAULT_JOB</job-name>
+                <job-group>DEFAULT</job-group>
+                <job-data-map>
+                    <entry>
+                        <key>taskId</key>
+                        <value>test</value>
+                    </entry>
+                </job-data-map>
+                <misfire-instruction>MISFIRE_INSTRUCTION_SMART_POLICY</misfire-instruction>
+                <cron-expression>0 0/1 * * * ?</cron-expression>
+                <time-zone>Asia/ShangHai</time-zone>
+            </cron>
+        </trigger>
+    </schedule>
+</job-scheduling-data>
